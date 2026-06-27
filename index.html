@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>3D 太阳系观察站</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./vendor/three/build/three.module.js",
+          "three/addons/": "./vendor/three/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <main class="observatory" id="observatory">
+      <section class="space-view" aria-label="3D 太阳系轨道">
+        <canvas id="spaceCanvas"></canvas>
+        <div id="labelLayer" class="label-layer" aria-hidden="true"></div>
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">太阳系观察</p>
+            <h1>3D 太阳系观察站</h1>
+          </div>
+          <div class="status-pill" id="motionState">运行中</div>
+        </header>
+        <div class="control-strip">
+          <button id="pauseButton" type="button">暂停</button>
+          <button id="extendedButton" type="button">扩展模式</button>
+          <button id="flightButton" type="button">飞船穿越</button>
+          <label>
+            轨道速度
+            <input id="speedControl" type="range" min="0.2" max="2.5" value="1" step="0.05" />
+          </label>
+          <button id="resetCamera" type="button">重置视角</button>
+        </div>
+        <div class="flight-hud" id="flightHud" aria-live="polite">
+          <span>飞船航线</span>
+          <strong id="flightTarget">待命</strong>
+        </div>
+      </section>
+      <aside class="info-panel" aria-label="天体信息">
+        <button id="collapsePanel" class="collapse-panel" type="button">收起</button>
+        <div class="panel-content">
+          <section class="info-block selected-card">
+            <p class="eyebrow">当前观察</p>
+            <h2 id="objectName">太阳</h2>
+            <p id="objectFact">拖动画面或滚轮缩放视角，点击星球名字查看信息。</p>
+            <div class="fact-grid">
+              <span id="objectType">类型：恒星</span>
+              <span id="objectDistance">位置：太阳系中心</span>
+              <span id="objectMoons">卫星：0</span>
+            </div>
+          </section>
+          <section class="info-block">
+            <p class="eyebrow">观测名单</p>
+            <div id="objectPicker" class="object-picker"></div>
+          </section>
+          <section class="info-block">
+            <p class="eyebrow">扩展模式包含</p>
+            <p class="tip">小行星带、柯伊伯带、彗星轨道，以及谷神星、阋神星、鸟神星、妊神星等代表性矮行星。</p>
+          </section>
+        </div>
+      </aside>
+    </main>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
